@@ -7,7 +7,8 @@ Run the script. You may see some packages being installed when you run it for th
 The script returns the 5-day forecast for Worcester, MA (Lat: 42.2634, Lon: -71.8022) with the latitude and longitude information provided. Using the latitude and longitude values, it generates the following URL through string concatenation: https://forecast.weather.gov/MapClick.php?lat=42.2634&lon=-71.8022
 Open this URL in a Firefox or Chrome browser. Locate the information that is being outputted in our script. Right click on this and select the Inspect Element option. This will launch the Inspector window that helps locate different elements on the page.
 Notice that all forecast containers in this section are located in the forecast-tombstone class inside the li tag. In order to scrape multiple elements listed under the same class name, we utilize the findAll() function from BeautifulSoup. The tag and class names are required arguments for this function.
-Editing Script 1
+
+## Editing Script 1
 Edit the NWS_WeatherForecast.py script to add the following functionality:
 
 Take latitude and longitude values as inputs in decimal degrees from a user.
