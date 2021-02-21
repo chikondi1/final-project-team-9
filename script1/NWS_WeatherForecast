@@ -1,0 +1,52 @@
+'''
+Shannon Reault and Chikondi Thangata
+Updated: 9/29/2020
+Python: 3.8.3
+The purpose of this script is to take latidude and longitude inputs from the user in decimal degrees, and output 
+weather forcast information from the National Weather Service. This is done using BeautifulSoup, string concatenation, 
+and a get() request. The output is then edited using .replace() to have proper formatting. 
+'''
+
+# import required libraries
+import requests
+from bs4 import BeautifulSoup
+
+import re
+
+# Create an empty list to store requested forecast response
+forecast = []
+
+## request user to input latitude and longitude in decimal degrees
+lat = str(input("Input latitude in decimal degrees:"))  #latitude input
+lon = str(input("Input longitude in decimal degrees:")) #longitude input
+
+# Create url for the requested location through string concatenation
+url = 'https://forecast.weather.gov/MapClick.php?lat='+lat+"&lon="+lon #lat/lon will be replaced with values user input
+# Check if the URL exists
+# print url
+
+# Send request to retrieve the web-page using the get() function from the requests library
+# The page variable stores the response from the web-page
+page = requests.get(url)
+
+# Create a BeautifulSoup object with the response from the URL
+# Access contents of the web-page using .content
+# html_parser is used since our page is in HTML format
+soup=BeautifulSoup(page.content,"html.parser")
+
+# Locate elements on page to be scraped
+# findAll() locates all occurrences of div tag with the given class name
+# stores it in the BeautifulSoup object
+weather_forecast = soup.findAll("li", {"class": "forecast-tombstone"}) #finding the specific information we want to print in our output based on the class (forecast-tombstone) and tag (li)
+
+# Loop through the BeautifulSoup object to extract text from every class instance using .text
+# Store results in a list
+for i in weather_forecast:
+    i = i.text              #extract weather information as text for output
+    forecast.append(i)      #add it to the forecast list
+
+# Print list to remove unicode characters
+
+for day in forecast: #loops through each days within the forecast information
+  day = day.replace(day, re.sub(r'(?<=[a-z])(?=[A-Z])', ' ', day)) #add proper spacing
+  print (day.upper()) #make all upper case
