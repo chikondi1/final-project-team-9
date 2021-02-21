@@ -1,5 +1,5 @@
 # Final Project
-This project was conducted within two python scripts, each of which solve various coding challenges. Original scripts/code were provided by Shadrock Roberts, and then edited by Chikondi Thangata and Shannon Reault in order to yield the results of the project.
+This project was conducted within two Python scripts, each of which solve various coding challenges. Original scripts/code were provided by Shadrock Roberts, and then edited by Chikondi Thangata and Shannon Reault in order to yield the results of the project.
 
 Script 1:
 
