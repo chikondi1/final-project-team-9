@@ -80,8 +80,10 @@ or
 ```
 Nairobi, Boston, London = "NBO,BOS,LON".split(",")
 print(Boston)
-What happens when you run the following?
 ```
+
+What happens when you run the following?
+
 
 ```
 Nairobi, Boston, London = "NBO,BOS,LON,LAX".split(",")
@@ -108,7 +110,7 @@ print(count)
 # Challenge 1: Write a general function
 Rewrite the code above as a function where you specify an argument with the name of the county you want to count votes for, and the function returns the number of votes for that particular county. Your code should be well commented to explain what the different parts of the code are doing.
 
-# Counting All the Votes
+## Counting All the Votes
 Counting votes for each county is a bit time consuming, you have to know all the names in advance and you have to loop through the file multiple times. How about if you could automatically find all the counties that were voted for, and count them all in one pass?
 
 You’ll need a data structure where you can associate a county name with the number of votes counted for it. A dictionary would be perfect!
