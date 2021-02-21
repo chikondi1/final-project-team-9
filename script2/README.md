@@ -23,10 +23,10 @@ Access the data for the survey in the data folder accompanying this Github repo.
 
 To start, create a new Colab notebook (or Python script, if you prefer) and import the data. In Colab the code looks like this:
 
-'''
+```
 from google.colab import files
 uploaded = files.upload()
-'''
+```
 
 Running this code block will generate a button that you can use to select a file from your computer. For more examples of ways to upload surveys to Colab see [this blogpost](https://towardsdatascience.com/3-ways-to-load-csv-files-into-colab-7c14fcbdcb92). If you are working locally, it's important to make sure that you are working in the right directory. For more information on opening and reading files locally see [this web page from Stanford University](http://www.compciv.org/guides/python/fileio/open-and-read-text-files/#how-to-fix-a-filenotfounderror). [Google's documentation for Colab](https://colab.research.google.com/notebooks/io.ipynb) also has a lot of good information about working with files, including how to use Google drive or Google sheets.
 
@@ -37,7 +37,7 @@ For example, what do you think will happen if you run '"1,2,3,4,5".split(",")' O
 
 After you've experimented, you can use 'split()' to help process your code.
 
-'''
+```
 with open("KEcounty_votes.txt") as file:
   for line in file:
     line = line.strip()                 # strips the newline from the end
@@ -45,7 +45,7 @@ with open("KEcounty_votes.txt") as file:
     name = parts[0]                     # These two lines store each field in a named variable. Since name and vote were the files in the file. The 0 and 1 values are the indexes!
     vote = parts[1]
     print(name + " voted for " + vote)  # This concatenates the strings to form a sentence.
-'''
+```
 
 In the code above, note that we've created a variable called 'parts' to store the output of the split. After this line runs, parts has the value '['Jin Li', 'Nairobi County']'. In other words, the output is a list called parts that contains two elements. We store the name in a variable called 'name' that pulls the first element (at the '0') index. Then we store the second element (at the '1' index) using the variable name 'vote'.
 
@@ -54,7 +54,7 @@ Let's write code that prints only the names of people who voted for Nairobi Coun
 
 Here's one possible solution:
 
-'''
+```
 with open("KEcounty_votes.txt") as file:
   for line in file:
     line = line.strip()                 # strips the newline from the end
@@ -62,38 +62,38 @@ with open("KEcounty_votes.txt") as file:
     name, vote = parts                  #  “multiple assignment” assigns each variable to the corresponding item in the list.
     if vote  == "Nairobi County":
       print(name + " prefers Nairobi County!")  # This concatenates the strings to form a sentence.
-'''
+```
 
 ## Using Multiple Assignment in your code.
 In the example given above to introduce split, we assigned each element of parts separately (e.g. 'name = parts[0]') but you can also assign them together using a technique called “multiple assignment”. In our solution, the line 'name, vote = parts' means to assign each variable to the corresponding item in the list. Also, note that we use the "equal", or '==' to only print the results containing 'Nairobi County'.
 
 Multiple assignment only works when the number of elements being assigned on the left hand side of the “ = “ matches the number on the right. Try running the following code:
 
-'''
+```
 a, b, c = [1, 2, 3]
 print(b)
 print(a)
-'''
+```
 
 or
 
-'''
+```
 Nairobi, Boston, London = "NBO,BOS,LON".split(",")
 print(Boston)
 What happens when you run the following?
-'''
+```
 
-'''
+```
 Nairobi, Boston, London = "NBO,BOS,LON,LAX".split(",")
 print(Boston)
-'''
+```
 
 # Counting Votes
 Now, let's write a program that counts the total number of votes for Nairobi County. Use your previous code as a base. You’ll need a variable to hold the number of votes recorded for Nairobi County, which you increment (i.e add one to) as part of the loop.
 
 Here's one possible solution:
 
-'''
+```
 print("Counting votes for Nairobi County...")
 count = 0
 with open("KEcounty_votes.txt") as file:
@@ -103,7 +103,7 @@ with open("KEcounty_votes.txt") as file:
     if vote == "Nairobi County":
       count = count + 1
 print(count)
-'''
+```
 
 # Challenge 1: Write a general function
 Rewrite the code above as a function where you specify an argument with the name of the county you want to count votes for, and the function returns the number of votes for that particular county. Your code should be well commented to explain what the different parts of the code are doing.
@@ -123,20 +123,20 @@ Can you create such a program? Start with one of your previous vote-counting pro
 
 Here are two snippets of code you might find useful: create an empty dictionary for associating county names with vote counts using 'counts = {}', then find a place in your code for the following:
 
-'''
+```
 if vote not in counts:
     # First vote for this variety
     counts[vote] = 1
 else:
     # Increment the vote count
     counts[vote] = counts[vote] + 1
-'''
+```
     
 Remember that for dictionaries 'counts[vote]' means "the value in 'counts' which is associated with the key vote”. In this case, the key is a string (camp name) and the value is a number (vote count.)
 
 If you need some help, here's one possible solution:
 
-'''
+```
 # Create an empty dictionary for associating county names with vote counts
 counts = {}
 
@@ -152,18 +152,18 @@ with open("KEcounty_votes.txt") as file:
       # Increment the vote count
       counts[vote] = counts[vote] + 1
 print(counts)
-'''
+```
 
 ## Formatting More Readable Output
 When you run this program the output is pretty hard for a person to read, even though it’s all there. What we want is to print the data in a way which is easy for people to read.
 
 Instead of 'print(counts)' we could try:
 
-'''
+```
 for name in counts:
   count = counts[name]
   print(name + ": " + str(count))
-'''
+```
 
 So, how does the output look? It might look a little odd. First, let's understand what the code is doing.
 
@@ -182,7 +182,7 @@ How about '"Nairobi County"' and '"nairobi county"'? Take a look at the [Python 
 
 There are lots of functions which could remove the case distinction. 'str.lower()' would convert all the names to all lower case, str.upper() would CONVERT THEM ALL TO UPPER CASE, or 'str.capitalize()' would **C**apitalize the first letter only. Here’s one possible solution:
 
-'''
+```
 # Create an empty dictionary for associating county names with vote counts
 counts = {}
 
@@ -199,7 +199,7 @@ with open("KEcounty_votes.txt") as file:
       # Increment the vote count
       counts[vote] = counts[vote] + 1
 print(counts)
-'''
+```
 
 Check the comment on the "munging" line we've added. This basically says, “take the variable called 'vote', and call the 'strip()' function on it, and then call the 'capitalize()' function on the result, and then assign that result back to the variable 'vote'.
 
@@ -214,7 +214,7 @@ You’ll need to apply the same data munging techniques to clean up people’s n
 
 Below is one possible solution.
 
-'''
+```
 # Create an empty dictionary for associating county names with vote counts
 counts = {}
 
@@ -245,7 +245,7 @@ print("Results:")
 print()
 for name in counts:
   print(name + ": " + str(counts[name]))
-'''
+```
 
 There are two new concepts in the code above:
 
